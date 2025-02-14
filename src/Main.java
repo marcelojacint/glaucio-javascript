@@ -1,5 +1,58 @@
+import entity.Pessoa;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");
+        List<Pessoa> masculinas = new ArrayList<>();
+        List<Pessoa> femininas = new ArrayList<>();
+        List<Pessoa> todasPessoas = new ArrayList<>();
+
+
+
+
+        Locale.setDefault(Locale.US);
+        Scanner scanner = new Scanner(System.in);
+
+      for (int i = 0; i < 1; i++) {
+          System.out.println("escreva o nome da pessoa:  ");
+          String nome = scanner.nextLine();
+
+          System.out.println("escreva o gênero da pessoa:  ");
+          String genero = scanner.nextLine();
+
+          System.out.println("escreva a altura da pessoa: ");
+          double altura = scanner.nextDouble();
+
+          Pessoa pessoa = new Pessoa(nome, genero, altura);
+          todasPessoas.add(pessoa);
+
+
+          if (pessoa.getGenero().equals("masculino")) {
+              masculinas.add(pessoa);
+          }else {
+              femininas.add(pessoa);
+          }
+          System.out.println("a maior altura é: " + verificarMaiorAltura(todasPessoas));
+
+      }
+
+        scanner.close();
+
+
     }
+
+    public static double verificarMaiorAltura(List<Pessoa> pessoas) {
+        double maiorAltura = 0;
+        for (Pessoa p : pessoas) {
+            if (p.getAltura() > maiorAltura) {
+                maiorAltura = p.getAltura();
+            }
+        }
+        return maiorAltura;
+    }
+
 }
